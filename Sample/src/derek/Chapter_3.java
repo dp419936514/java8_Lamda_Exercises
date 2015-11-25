@@ -1,18 +1,19 @@
 package derek;
 
+import com.benq.derek.pojo.Album;
 import com.benq.derek.pojo.Artist;
 import com.benq.derek.pojo.Track;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static java.util.Arrays.asList;
 import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toSet;
 
 public class Chapter_3 {
     String[] members = {"John Lennon", "Paul McCartney", "George Harrison", "Ringo  Starr"};
@@ -198,6 +199,69 @@ public class Chapter_3 {
 
     public void combine_ops() {
 
+        //第一个问题，找出某张专辑上所有的乐队的国籍
+        //假定，所有的乐队都以The开头
+
+        Album album = new Album();
+        List<String> nationalityList = album.getMusicianStream()
+                .filter(artist -> artist.name.startsWith("The"))
+                .map(artist1 -> artist1.nationality).collect(Collectors.toList());
+
+        //getMusicianStream返回的是内部集合的Stream，这样的好处显而易见： 无论用户怎么对stream操作，都不会影响到原来的数据。
+    }
+
+
+    public void rebuild_Lagecy() {
+        //选定一组专辑，找出所有长度大于1min的曲目的名字
+
+        //遗留代码
+        Set<String> result = new HashSet<>();
+
+        Album[] albums = new Album[5];
+
+        for (Album album : albums) {
+            for (Track track : album.tracks) {
+                if (track.length > 60) {
+                    result.add(track.name);
+                }
+            }
+        }
+
+        //Rebuild 1
+        asList(albums).stream().forEach(album -> {
+            for (Track track : album.tracks) {
+                if (track.length > 60) {
+                    result.add(track.name);
+                }
+            }
+        });
+
+
+        //rebuild 2
+        asList(albums).stream().forEach(album -> {
+                    asList(album.tracks).stream().filter(track -> track.length > 60)
+                            .map(track1 -> track1.name)
+                            .forEach(name -> result.add(name));
+                }
+
+        );
+
+
+        //Rebuild 3
+        asList(albums).stream()
+                .flatMap(album -> asList(album.tracks).stream())
+                .filter(track -> track.length > 60)
+                .map(track1 -> track1.name)
+                .forEach(name -> result.add(name));
+
+
+        //Rebuild 4
+        Set<String> result2 = asList(albums).stream()
+                .flatMap(album -> asList(album.tracks).stream())
+                .filter(track -> track.length > 60)
+                .map(track1 -> track1.name)
+                .collect(toSet());
 
     }
+
 }

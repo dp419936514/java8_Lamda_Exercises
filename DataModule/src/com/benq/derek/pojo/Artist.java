@@ -9,6 +9,7 @@ public class Artist {
     public String name;
     public String[] members;
     public String origin;
+    public String nationality;
 
     public Artist(String name, String[] members, String origin) {
         this.name = name;
