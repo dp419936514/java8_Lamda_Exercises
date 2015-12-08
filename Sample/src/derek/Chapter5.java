@@ -14,7 +14,7 @@ public class Chapter5 {
      *
      *  String[]::new
      *
-      */
+     * */
 
     /**
      * Use Collector
@@ -24,9 +24,6 @@ public class Chapter5 {
      *
      * 2.Convert to value
      *
-     * /
-
-
-
+     * */
 
 }
