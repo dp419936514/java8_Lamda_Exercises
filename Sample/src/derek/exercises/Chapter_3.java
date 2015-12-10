@@ -2,6 +2,7 @@ package derek.exercises;
 
 import com.benq.derek.pojo.Album;
 import com.benq.derek.pojo.Artist;
+import com.benq.derek.pojo.DataSource;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -17,11 +18,7 @@ import static java.util.Arrays.asList;
  * Created by Derek.P.Dai on 2015/11/24.
  */
 public class Chapter_3 {
-    String[] shes = {"Selina", "Hebe", "Ella"};
 
-    String[] members = {"John Lennon", "Paul McCartney", "George Harrison", "Ringo  Starr"};
-
-    List<Artist> artists = asList(new Artist("S·H·E", shes, "TaiWan"), new Artist("The Beatles", members, "Liverpool"));
 
     //编写一个求和函数，计算流中所有数的和
     public int addUp(Stream<Integer> numbers) {
@@ -45,7 +42,7 @@ public class Chapter_3 {
     public void getArtNameNatTest() {
 
 
-        System.out.println(getArtistNameAndNationality(artists));
+        System.out.println(getArtistNameAndNationality(DataSource.artists));
     }
 
     //编写一个函数，接受专辑列表作为参数，返回一个由最多包含3首歌曲的专辑组成的列表
@@ -74,7 +71,7 @@ public class Chapter_3 {
 
     @Test
     public void countAristListMembersTest() {
-        System.out.println(countAristListMembers(artists));
+        System.out.println(countAristListMembers(DataSource.artists));
     }
 
 

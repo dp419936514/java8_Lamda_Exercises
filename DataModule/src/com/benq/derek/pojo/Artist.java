@@ -25,4 +25,11 @@ public class Artist {
                 ", origin='" + origin + '\'' +
                 '}';
     }
+    public boolean isSolo(){
+        return this.members.length == 1 ;
+    }
+
+    public  String[] getMembers(){
+        return members;
+    }
 }
