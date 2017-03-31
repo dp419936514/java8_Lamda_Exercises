@@ -1,6 +1,5 @@
 package derek;
 
-import com.benq.derek.pojo.Album;
 import com.benq.derek.pojo.Artist;
 import com.benq.derek.pojo.DataSource;
 import org.junit.Test;
@@ -9,10 +8,8 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import static java.util.Arrays.asList;
-import static java.util.Arrays.setAll;
 import static java.util.stream.Collectors.*;
 import static org.hamcrest.core.IsCollectionContaining.hasItem;
-import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
